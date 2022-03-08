@@ -101,3 +101,7 @@ Es gibt noch eine weitere Möglichkeit Volumes zu mounten. Die Bind Mounts erlau
 * `-v $PWD/my/local/path:/var/lib/postgresql/data` mounted den angegebenen Host-Pfad an den Target Pfad des Containers
 
 Im Endeffekt, ist das Konzept vergleichbar mit dem des Named Volumes, wir haben nur mehr Freiheit den Pfad auf dem Host System zu bestimmen.
+
+### Prüfen welche Volumes vorhanden sind und löschen dieser
+* `docker volume ls` Welche Volumes sind auf dem Host vorhanden
+* `docker volume rm <id>` Löscht das Volume mit der <id>
