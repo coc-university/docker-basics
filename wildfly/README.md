@@ -27,7 +27,7 @@ Wir starten mit dem Ausführen eines vorgefertigten Images aus einem public repo
 * `docker image rm <id>` Löscht Images mit der <id>
 
 ## Erweiterung des WildFly Images
-Nun werden wir auf Basis des WildFly Images Anpassungen vornehmen. Um auf dem Image aufbauen zu können legen wir uns ein `Dockerfile` an und erweitern das Base Image. Wir refenzieren im `from` Teil das WildFly Image und fügen aus Gründen der Übersichtlichkeit den `CMD` Befehl aus dem Basis Image hinzu. Siehe `Dockerfile`. 
+Nun werden wir auf Basis des WildFly Images Anpassungen vornehmen. Um auf dem Image aufbauen zu können legen wir uns ein [Dockerfile](https://github.com/coc-university/docker-basics/blob/main/wildfly/Dockerfile) an und erweitern das Base Image. Wir refenzieren im `from` Teil das WildFly Image und fügen aus Gründen der Übersichtlichkeit den `CMD` Befehl aus dem Basis Image hinzu. Siehe `Dockerfile`. 
 
 ### Docker Image lokal bauen
 Mit dem folgenden Befehl können wir das Image lokal bauen:

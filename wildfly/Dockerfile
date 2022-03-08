@@ -12,5 +12,5 @@ FROM quay.io/wildfly/wildfly:26.0.1.Final
 # --> add application files to deployment directory here <--
 # (see "Application Deployment" @ README.md)
 
-# default command to start WildFly Application Server
+# Command to start WildFly Application Server with Management Console
 CMD ["/opt/jboss/wildfly/bin/standalone.sh", "-b", "0.0.0.0", "-bmanagement", "0.0.0.0"]

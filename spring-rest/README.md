@@ -1,6 +1,6 @@
 # Application mit Hello World Rest Endpunkt
 
-### Prerequisite
+## Prerequisite
 * Java 11
 * Maven
 
