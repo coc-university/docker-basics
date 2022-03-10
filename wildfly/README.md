@@ -6,7 +6,7 @@
 * Maven
 
 ## Ausführen eines Wildfly Images aus einer public registry
-Wir starten mit dem Ausführen eines vorgefertigten Images aus einem public repository. Dazu nehmen wir die eine neuere Version des JBoss Servers - Wildfly. Das Image beinhaltet den WildFly Server und gibt per default port `9990` (Admin Konsole) und `8080` (Applikation Port) frei. Um das Image auszuführen, gibt man folgenden Befehl ein:
+Wir starten mit dem Ausführen eines vorgefertigten Images aus einem public repository. Dazu nehmen wir eine neuere Version des JBoss Servers - Wildfly. Das Image beinhaltet den WildFly Server und gibt per default port `9990` (Admin Konsole) und `8080` (Applikation Port) frei. Um das Image auszuführen, gibt man folgenden Befehl ein:
 
 `docker run --name my-wildfly -d -p 6660:9990 -p 8080:8080 quay.io/wildfly/wildfly:26.0.1.Final`
 
