@@ -20,10 +20,10 @@ Wir starten mit dem Ausführen eines vorgefertigten Images aus einem public repo
 ## Prüfen welche Container, Images vorhanden sind und ggf. aktuell laufen
 * `docker ps` Welche vorhandenen Container laufen gerade
 * `docker ps -a` Welche Container gibt es im Allgemeinen
-* `docker stop <id>` Stoppt den Docker Container mit der <id>
-* `docker rm <id>` Löscht den Docker Container mit der <id>
+* `docker stop <id>` Stoppt den Docker Container mit der id
+* `docker rm <id>` Löscht den Docker Container mit der id
 * `docker image ls` Welche Images sind lokal vorhanden
-* `docker image rm <id>` Löscht Images mit der <id>
+* `docker image rm <id>` Löscht Images mit der id
 
 ## Erweiterung des WildFly Images
 Nun werden wir auf Basis des WildFly Images Anpassungen vornehmen. Um auf dem Image aufbauen zu können legen wir uns ein [Dockerfile](https://github.com/coc-university/docker-basics/blob/main/wildfly/Dockerfile) an und erweitern das Base Image. Wir refenzieren im `from` Teil das WildFly Image und fügen aus Gründen der Übersichtlichkeit den `CMD` Befehl aus dem Basis Image hinzu. Siehe `Dockerfile`. 
