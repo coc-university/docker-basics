@@ -6,11 +6,11 @@
 * Maven
 
 ## Ausführen eines Wildfly Images aus einer public registry
-Wir starten mit dem Ausführen eines vorgefertigten Images aus einem public repository. Dazu nehmen wir die container-optimierte Version eines JBoss Servers - Wildfly. Das Image beinhaltet den WildFly Server und gibt per default port `9990` (Admin Konsole) und `8080` (Applikation Port) frei. Um das Image auszuführen gibt man folgenden Befehl ein:
+Wir starten mit dem Ausführen eines vorgefertigten Images aus einem public repository. Dazu nehmen wir die eine neuere Version des JBoss Servers - Wildfly. Das Image beinhaltet den WildFly Server und gibt per default port `9990` (Admin Konsole) und `8080` (Applikation Port) frei. Um das Image auszuführen, gibt man folgenden Befehl ein:
 
 `docker run --name my-wildfly -d -p 6660:9990 -p 8080:8080 quay.io/wildfly/wildfly:26.0.1.Final`
 
-#### Kurze Erklärung zu dem "docker run" Befehl
+### Kurze Erklärung zu dem "docker run" Befehl
 * `docker run` führt ein Image als Container aus
 * `--name my-wildfly` der Container wird über diesen Namen referenziert
 * `-d` Container wird detached ausgeführt, also im Hintergrund
@@ -29,11 +29,11 @@ Wir starten mit dem Ausführen eines vorgefertigten Images aus einem public repo
 ## Erweiterung des WildFly Images
 Nun werden wir auf Basis des WildFly Images Anpassungen vornehmen. Um auf dem Image aufbauen zu können legen wir uns ein [Dockerfile](https://github.com/coc-university/docker-basics/blob/main/wildfly/Dockerfile) an und erweitern das Base Image. Wir refenzieren im `from` Teil das WildFly Image und fügen aus Gründen der Übersichtlichkeit den `CMD` Befehl aus dem Basis Image hinzu. Siehe `Dockerfile`. 
 
-### Docker Image lokal bauen
+## Docker Image lokal bauen
 Mit dem folgenden Befehl können wir das Image lokal bauen:
 `docker build --tag=wildfly-example .`
 
-#### Kurze Erklärung zu dem "docker build" Befehl
+### Kurze Erklärung zu dem "docker build" Befehl
 * `docker build` baut ein Docker Image anhand eines Dockerfile
 * `--tag=wildfly-exmaple` gibt dem Image einen Tag zur Identifizierung
 * `.` ist der Pfad zum Dockerfile anhand dessen das Image gebaut wird
@@ -42,7 +42,7 @@ Nachdem das Image gebaut wurde, können wir es mit dem oben beschriebenen Befehl
 
 `docker run -d -p 6660:9990 -p 8080:8080 wildfly-example`
 
-### Admin Account
+## Admin Account
 Der WildFly Container läuft nun und wir kommen auch auf den Server. Allerdings können wir uns nicht einloggen, da wir keinen Admin Account haben. Dafür gibt es aber eine einfache Lösung: wir das "add-user.sh" script, das mit dem WildFly Server ausgeliefert wird.
 
 Das script ist im Docker Container an der Stelle zu finden `/opt/jboss/wildfly/bin/add-user.sh`.
@@ -53,7 +53,7 @@ Wir geben dem script einen Nutzernamen (`admin`) und ein Password (`Admin#P4ssw0
 
 Wenn wir nun ein neues Image bauen und ausführen, können wir uns mit diesen Admin Credentials einloggen und zB. eine Applikation deployen.
 
-### Application Deployment
+## Application Deployment
 In dem Ordner `spring-rest` ist eine Java Applikation, die uns am Pfad `/hello` ein Hello World liefert. Wir bauen die Applikation und legen sie in ein `.war` file mit dem Namen `spring-rest-0.0.1-SNAPSHOT.war`, welches wir dann in diesen Ordner hier kopieren. Das maven pom.xml ist bereits vorbereitet, so das man nicht mehr manuell kopieren muss - `mvn clean install package` im Spring Ordner reicht aus.
 
 Für das automatisierte Deployment nutzen wir den Deployment Scan Mechanismus des WildFly Servers. Der WildFly Server wird in dem Pfad `/opt/jboss/wildfly/standalone/deployments/` nach geeigneten Paketen suchen und diese dann direkt auf den Server deployen.
@@ -64,7 +64,7 @@ Damit die Datei aber in dem Docker Container vorhanden ist, müssen wir sie in D
 
 Jetzt können wir das Image wieder bauen und den Docker Container inklusive Applikation starten. Tatsächlich hätten wir jetzt auch keine Bedarf mehr am Admin User und könnten uns diese jetzt unnötige Konfiguration sparen.
 
-### Application Config
+## Application Config
 Die Spring Boot Applikation liefert per default am Hello World Endpunkt eben `Hello World!` zurück. Allerdings ist die Rückgabe über Environment Variablen konfigurierbar - das wissen wir aus der README.md in dem spring-rest Ordner. Damit können wir unser Docker Image und damit auch die Applikation auf unsere Bedürfnisse anpassen. Vielleicht soll das Image auf der Entwicklungsumgebung etwas anderes antworten, als auf der Produktivumgebung oder jeder Entwickler möchte persönlich begrüßt werden.
 
 Dazu können wir die Konfiguration, also unsere Environment Variable, einfach in den Docker Container mitgeben. Dazu schreiben wir die folgende ENV Variable in das Dockerfile:
