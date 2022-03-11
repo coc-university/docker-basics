@@ -14,11 +14,11 @@ In dem [Dockerfile](https://github.com/coc-university/docker-basics/blob/main/po
 
 Da das Basis-Image bereits den korrekten Start Befehl definiert hat und den Port `5432` freigibt, müssen wir an dem Image keine weiteren Änderungen vornehmen. Wie gewohnt bauen wir das Image und versehen es mit einem Tag.
 
-`docker build --tag=postgres-volume .`
+`docker build --tag=postgres-test .`
 
 Anschließend starten wir einen Docker Container aus diesem Image und achten darauf, den Port freizugeben.
 
-`docker run -p 5432:5432 postgres-volume`
+`docker run -p 5432:5432 postgres-test`
 
 ## Verbinden mit Container und Datenbank anlegen (optional)
 `Der folgende Schritt dient nur der Veranschaulichung des Problems fehlender Persistenz. Für das Konfigurieren des Volumes kann man diesen Schritt überspringen.`
